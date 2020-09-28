@@ -1,19 +1,19 @@
-FROM ubuntu:xenial
+FROM arm64v8/ubuntu
 
-MAINTAINER Raymond Tiefengraber
+MAINTAINER Dmitry Prokofyev
 
 # Install apt packages
 RUN apt-get update \
     && apt-get install -y python-pip \
 
-# Clean downloaded apt packages after install
+    # Clean downloaded apt packages after install
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 
-# Install python packages
+    # Install python packages
     && pip install  'sphinx              == 1.6.2' \
-                    'sphinx-autobuild    == 0.6.0' \
-                    'sphinx_rtd_theme    == 0.2.4'
+    'sphinx-autobuild    == 0.6.0' \
+    'sphinx_rtd_theme    == 0.2.4'
 
 # Set the locale
 ENV   LANG C.UTF-8
